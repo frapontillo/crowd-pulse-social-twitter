@@ -20,6 +20,8 @@ import com.github.frapontillo.pulse.crowd.data.entity.Message;
 import com.github.frapontillo.pulse.crowd.social.extraction.ExtractionParameters;
 import com.github.frapontillo.pulse.crowd.social.extraction.IReplyExtractor;
 import com.github.frapontillo.pulse.crowd.social.twitter.TwitterFactory;
+import com.github.frapontillo.pulse.spi.IPlugin;
+import com.github.frapontillo.pulse.spi.VoidConfig;
 import com.github.frapontillo.pulse.util.PulseLogger;
 import twitter4j.*;
 
@@ -90,5 +92,9 @@ public class TwitterReplyExtractor extends IReplyExtractor {
 
     @Override public String getName() {
         return PLUGIN_NAME;
+    }
+
+    @Override public IPlugin<Message, Message, VoidConfig> getInstance() {
+        return new TwitterReplyExtractor();
     }
 }

@@ -16,10 +16,12 @@
 
 package com.github.frapontillo.pulse.crowd.social.twitter.profile;
 
+import com.github.frapontillo.pulse.crowd.data.entity.Message;
 import com.github.frapontillo.pulse.crowd.data.entity.Profile;
 import com.github.frapontillo.pulse.crowd.social.profile.IProfiler;
 import com.github.frapontillo.pulse.crowd.social.profile.ProfileParameters;
 import com.github.frapontillo.pulse.crowd.social.profile.ProfilerException;
+import com.github.frapontillo.pulse.spi.IPlugin;
 
 import java.util.List;
 
@@ -32,6 +34,10 @@ public class TwitterProfiler extends IProfiler {
 
     @Override public String getName() {
         return PLUGIN_NAME;
+    }
+
+    @Override public IPlugin<Message, Profile, ProfileParameters> getInstance() {
+        return new TwitterProfiler();
     }
 
     private TwitterProfilerRunner getRunnerInstance() {

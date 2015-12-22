@@ -20,6 +20,8 @@ import com.github.frapontillo.pulse.crowd.data.entity.Profile;
 import com.github.frapontillo.pulse.crowd.social.profile.IProfileGrapher;
 import com.github.frapontillo.pulse.crowd.social.profile.ProfileParameters;
 import com.github.frapontillo.pulse.crowd.social.twitter.TwitterFactory;
+import com.github.frapontillo.pulse.spi.IPlugin;
+import com.github.frapontillo.pulse.spi.VoidConfig;
 import com.github.frapontillo.pulse.util.PulseLogger;
 import org.apache.logging.log4j.Logger;
 import twitter4j.PagableResponseList;
@@ -72,5 +74,9 @@ public class TwitterProfileGrapher extends IProfileGrapher {
 
     @Override public String getName() {
         return PLUGIN_NAME;
+    }
+
+    @Override public IPlugin<Profile, Profile, VoidConfig> getInstance() {
+        return new TwitterProfileGrapher();
     }
 }
