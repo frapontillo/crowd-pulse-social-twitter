@@ -17,6 +17,7 @@
 plugins {
     id 'java'
     id 'maven'
+    id "com.github.frapontillo.switchdependencies" version "0.0.1-alpha.0"
 }
 
 sourceCompatibility = 1.8
@@ -32,7 +33,17 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.frapontillo:crowd-pulse-social:0.0.1'
-    compile group: 'org.twitter4j', name: 'twitter4j-core', version: '4.0.4'
-    compile group: 'org.twitter4j', name: 'twitter4j-stream', version: '4.0.4'
+    compile 'org.twitter4j:twitter4j-core:4.0.4'
+    compile 'org.twitter4j:twitter4j-stream:4.0.4'
+}
+
+switchDependencies {
+    develop {
+        truthy = {
+            compile project(':crowd-pulse-social')
+        }
+        falsy = {
+            compile 'com.github.frapontillo:crowd-pulse-social:0.0.1'
+        }
+    }
 }
